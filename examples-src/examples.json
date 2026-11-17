@@ -1,0 +1,398 @@
+[
+ {
+  "id": "oled_hello",
+  "title": "OLED 128x64 (SSD1306, I2C2): hello + uptime",
+  "file": "oled_hello.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "oled1",
+     "type": "oled",
+     "x": 340,
+     "y": 200,
+     "attrs": {
+      "color": "white",
+      "i2c-address": "0x3C",
+      "height": "64"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "oled1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "oled1:VCC",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "oled1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "oled1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "oled_anim",
+  "title": "OLED 128x64: animation at 400 kHz (fast mode)",
+  "file": "oled_anim.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "oled1",
+     "type": "oled",
+     "x": 340,
+     "y": 200,
+     "attrs": {
+      "color": "dual",
+      "i2c-address": "0x3C",
+      "height": "64"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "oled1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "oled1:VCC",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "oled1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "oled1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "i2c_scan",
+  "title": "I2C scanner for I2C1 + I2C2 (Serial Monitor)",
+  "file": "i2c_scan.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "oled1",
+     "type": "oled",
+     "x": 340,
+     "y": 200,
+     "attrs": {
+      "color": "white",
+      "i2c-address": "0x3C",
+      "height": "64"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "oled1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "oled1:VCC",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "oled1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "oled1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "mpu6050_read",
+  "title": "MPU-6050 accel/gyro/temperature (Serial Monitor)",
+  "file": "mpu6050_read.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "mpu1",
+     "type": "mpu6050",
+     "x": 340,
+     "y": 200,
+     "attrs": {
+      "ax": "0",
+      "ay": "0",
+      "az": "1",
+      "gx": "0",
+      "gy": "0",
+      "gz": "0",
+      "temp": "25"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "mpu1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "mpu1:VCC",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "mpu1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "mpu1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "bme280_oled",
+  "title": "BME280 weather station on an OLED (2 devices, 1 bus)",
+  "file": "bme280_oled.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "oled1",
+     "type": "oled",
+     "x": 300,
+     "y": 200,
+     "attrs": {
+      "color": "white",
+      "i2c-address": "0x3C",
+      "height": "64"
+     }
+    },
+    {
+     "id": "bme1",
+     "type": "bme280",
+     "x": 560,
+     "y": 200,
+     "attrs": {
+      "temp": "23.5",
+      "pres": "1008.3",
+      "hum": "46"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "oled1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "oled1:VCC",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "oled1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "oled1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ],
+    [
+     "bme1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "bme1:VCC",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "bme1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "bme1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ds3231_lcd_clock",
+  "title": "DS3231 clock shown on an I2C LCD (needs 5 V)",
+  "file": "ds3231_lcd_clock.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "rtc1",
+     "type": "ds3231",
+     "x": 540,
+     "y": 50,
+     "attrs": {
+      "temp": "25",
+      "start": "",
+      "eeprom": "yes",
+      "eeaddr": "0x57"
+     }
+    },
+    {
+     "id": "lcd1",
+     "type": "lcdi2c",
+     "x": 250,
+     "y": 340,
+     "attrs": {
+      "i2c-address": "0x27"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "rtc1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "rtc1:VCC",
+     "bluepill:5V",
+     "red"
+    ],
+    [
+     "rtc1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "rtc1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ],
+    [
+     "lcd1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "lcd1:VCC",
+     "bluepill:5V",
+     "red"
+    ],
+    [
+     "lcd1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "lcd1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "eeprom_counter",
+  "title": "AT24C32 EEPROM boot counter (survives Stop/Run, needs pull-ups)",
+  "file": "eeprom_counter.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "ee1",
+     "type": "at24",
+     "x": 340,
+     "y": 240,
+     "attrs": {
+      "size": "24C32",
+      "wp": "0"
+     }
+    },
+    {
+     "id": "r1",
+     "type": "res",
+     "x": 560,
+     "y": 80,
+     "attrs": {
+      "value": "4700"
+     }
+    },
+    {
+     "id": "r2",
+     "type": "res",
+     "x": 560,
+     "y": 120,
+     "attrs": {
+      "value": "4700"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "ee1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "ee1:VCC",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "ee1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "ee1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ],
+    [
+     "r1:1",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "r1:2",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "r2:1",
+     "bluepill:PB11",
+     "blue"
+    ],
+    [
+     "r2:2",
+     "bluepill:3V3.2",
+     "red"
+    ]
+   ]
+  }
+ }
+]
